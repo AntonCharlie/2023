@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>FlashCard</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .container {
+            width: 100%;
+            height: 100vh;
+            box-sizing: border-box;
+            /* background-color: greenyellow; */
+            background: linear-gradient(to bottom right, rgb(198, 182, 0), rgb(255, 131, 230));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .container2 {
+            width: 100%;
+            height: 100vh;
+            box-sizing: border-box;
+            background-color: red;
+            /* background: linear-gradient(to bottom right, rgb(198, 182, 0), rgb(251, 30, 207)); */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        h1 {
+            /* color: lightgreen; */
+            margin-bottom: 20px;
+        }
+        p {
+            margin-top: 20px;
+            color: white;
+        }
+        input {
+            border: 2px solid black;
+            text-align: center;
+        }
+
+        .incorrect {
+            color : red;
+        }
+        .lose {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+    <script type="text/babel">
+
+        class Game extends React.Component {
+
+            constructor(props) {
+                super(props);
+                this.state = {
+                    num1 : Math.floor((Math.random() * 10)),
+                    num2 : Math.floor((Math.random() * 10)),
+                    score : 0,
+                    response : "",
+                    incorrect : false
+                }
+            }
+
+            renderProblemPage = () => {
+                return (
+                    <div className="container">
+                        <h1 className={this.state.incorrect ? "incorrect" : ""}>{this.state.num1} + {this.state.num2}</h1>
+                        <input type="text" value={this.state.response} placeholder="Put your answer here" onChange={this.updateResponse} onKeyPress={this.checkResponse} />
+                        <p>Your score is : {this.state.score}</p>
+                    </div>
+                )
+            }
+
+            renderWinPage = () => {
+                return (
+                    <div className="container">
+                        <h1>You Win</h1>
+                    </div>
+                )
+            }
+
+            renderLosePage = () => {
+                return (
+                    <div className="container2">
+                        <h1>You Lose!</h1>
+                        <h5>Your score is very low</h5>
+                    </div>
+                )
+            }
+
+            render = () => {
+                if (this.state.score > 5) {
+                    return this.renderWinPage();
+                }
+                else if (this.state.score < -4){
+                    return this.renderLosePage();
+                }
+                else {
+                    return this.renderProblemPage();
+                }
+            }
+
+            updateResponse = event => {
+
+                this.setState({
+                    response : event.target.value
+                })
+
+            }
+
+            checkResponse = event => {
+
+                if (event.key === "Enter"){
+                    // if (parseInt(this.state.response) === this.state.num1 + this.state.num2)
+                    if (JSON.parse(this.state.response) === this.state.num1 + this.state.num2) {
+                        this.setState(state => ({
+                            score : state.score + 1,
+                            response : "",
+                            num1 : Math.floor((Math.random() * 10)),
+                            num2 : Math.floor((Math.random() * 10)),
+                            incorrect : false
+                        }))
+                        // document.querySelector("h1").style.color = 'green'
+                    }
+                    else {
+                        this.setState(state => ({
+                            incorrect : true,
+                            score : state.score - 1,
+                            response : ""
+                            // num1 : Math.floor((Math.random() * 10)),
+                            // num2 : Math.floor((Math.random() * 10))
+                        }))
+                        // document.querySelector("h1").style.color ='red'
+                    }
+                }
+            }
+        }
+
+        class App extends React.Component {
+
+            render = () => {
+                return (
+                    <div>
+                        <Game />
+                    </div>
+                    
+                )
+            }
+
+        }
+
+        ReactDOM.render(<App />, document.getElementById("app"));
+    </script>
+</body>
+</html>

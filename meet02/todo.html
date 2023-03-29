@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Shantell+Sans:ital,wght@1,300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Shantell+Sans:ital,wght@1,300&display=swap" rel="stylesheet">
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            /* background-color: aquamarine; */
+            background-image: url(https://www.incimages.com/uploaded_files/image/1920x1080/getty_488146678_20001334181884387374_285051.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        li {
+            margin-bottom: 15px;
+        }
+        h1 {
+            font-family: 'Shantell Sans', cursive;
+            font-size: 50px;
+            font-weight: bold;
+            color: purple;
+        }
+
+        .container {
+            /* background-color:rgba(0,0,255,0.2); */
+            height: 100vh;
+            display: flex;
+            box-sizing: border-box;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            /* background-color: #000000d0; */
+            color: white;
+        }
+
+        .list {
+            padding: 0;
+            margin: 0;
+            width: 80%;
+            /* background-color: aqua; */
+        }
+
+        .list>li{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            /* background-color: yellow; */
+            padding: 5px;
+        }
+
+        .task-item {
+            text-transform: capitalize;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+        .delete-task-item {
+            width: 30px;
+            height: 30px;
+            border-radius: 15px;
+            font-size: 16pt;
+            border: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .form-container {
+            width: 50%;
+            
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .form-container>input {
+            width: 80%;
+            border-radius: 20%;
+        }
+
+        .form-container>button {
+            width: 50px;
+            height: 50px;
+            border-radius: 25px;
+            border: none;
+        }
+
+        .form-container>button>.icon-add-note{
+            font-size: 20pt;
+        }
+        button:hover {
+            background: green;
+        }
+        .delete-task-item:hover {
+            background: red;
+        }
+        p{
+            margin-top: 50px;
+            font-size: 40px;
+            color: black;
+            font-family: 'Shantell Sans', cursive;
+        }
+        .task-item {
+            color: rgb(255, 255, 37);
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+    <script type="text/babel">
+
+        class App extends React.Component {
+
+            constructor(props){
+                super(props)
+                this.state = {
+                    tasks: ["task-one", "task-two", "task-three"],
+                    input : ""
+                }
+            }
+
+            render = () => {
+                return (
+                    <div className="container">
+                        <h1>To Do List</h1>
+                        <ul className="list">{this.state.tasks.map((task, i) => {
+                            return (
+                                <li key={i}>
+                                    <span className="task-item">{task}</span>
+                                    <button className="delete-task-item" onClick={() => this.deleteTask(i)}>
+                                        <i class='bx bx-task-x'></i>    
+                                    </button>
+                                </li>
+                            )
+                        })}</ul>
+
+                        <div className="form-container">
+                            <input type="text" value={this.state.input} onChange={this.handleInput}/>
+                            <button onClick={this.addTask}>
+                                <i class='bx bx-edit icon-add-note'></i>    
+                            </button>
+                        </div>
+                        
+                        <p>Number of tasks : {this.state.tasks.length}</p>
+                    </div>
+                    
+                )
+            }
+
+            handleInput  = event => (
+                this.setState({
+                    input : event.target.value
+                })
+            )
+
+            addTask = () => {
+                this.setState( state => ({
+                    tasks : [...state.tasks, state.input],
+                    input : ""
+                    }
+                ))
+            }
+
+            deleteTask = index => {
+                this.setState( state => {
+                    const tasks = [...state.tasks];
+                    tasks.splice(index, 1);
+                    return {
+                        tasks : tasks
+                    }
+                })
+            }
+
+        }
+
+        ReactDOM.render(<App />, document.getElementById("app"));
+    </script>
+</body>
+</html>
