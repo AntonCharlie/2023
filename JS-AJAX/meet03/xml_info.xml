@@ -1,0 +1,23 @@
+<DATA>
+
+        <STUDENT>
+            <ID>A001</ID>
+            <NAME>Charlie</NAME>
+            <CLASS>11 KOM</CLASS>
+            <YEAR>2023</YEAR>
+        </STUDENT>
+
+        <STUDENT>
+            <ID>A002</ID>
+            <NAME>Antoni</NAME>
+            <CLASS>11 KOMPUTER</CLASS>
+            <YEAR>2023</YEAR>
+        </STUDENT>
+
+        <STUDENT>
+            <ID>AA003</ID>
+            <NAME>Charlie Antoni</NAME>
+            <CLASS>11 IPA 3</CLASS>
+            <YEAR>2023</YEAR>
+        </STUDENT>
+</DATA>

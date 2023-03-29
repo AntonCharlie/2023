@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adding List</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Aboreto&family=Comfortaa&family=Lobster&display=swap" rel="stylesheet">
+    <script type="text/javascript">
+
+        document.addEventListener('DOMContentLoaded', function() {
+
+            document.querySelector("#submit-task").disabled = true;
+
+            document.querySelector("#entry-task").onkeyup = function() {
+                
+                if (document.querySelector("#entry-task").value.trim().length > 0) {
+                    document.querySelector("#submit-task").disabled = false;
+                } else {
+                    document.querySelector("#submit-task").disabled = true;
+                }
+
+            }
+
+            document.querySelector("#form-task").onsubmit = function() {
+
+                const li = document.createElement('li');
+
+                li.innerHTML = document.querySelector("#entry-task").value;
+
+
+                document.querySelector("#tasks").append(li);
+
+                document.querySelector("#entry-task").value = "";
+
+                document.querySelector("#submit-task").disabled = true;
+
+                return false; // biar browser tidak ke-reload
+
+
+            }
+
+        })
+    </script>
+    <style>
+        body {
+            height: 1000px;
+            background-image: url('background.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        ul {
+            list-style: none;
+            color: rgb(242, 242, 149);
+            font-size: 25px;
+            margin-left: 25%;
+            font-family: 'Comfortaa', cursive;
+        }
+        h1 {
+            font-style: bold;
+            color: blue;
+        }
+        form {
+            display: flex;
+            justify-content: center;
+        }
+        input.input {
+            width: 380px;
+            height: 40px;
+            background-color: lightgoldenrodyellow;
+            border: 2px solid black;
+            border-radius: 60px;
+            text-align: center;
+        }
+        input.submit {
+            width: 80px;
+            color: yellow;
+            background-color: black;
+            border: 2px solid yellow;
+            border-radius: 50px;
+        }
+        form {
+            margin-top: -70px;
+            margin-bottom: 70px;
+        }
+        .google {
+            margin-top: -50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 120px;
+            font-family: 'Unbounded', cursive;
+            font-weight: bold;
+        }
+        .satu {
+            color: rgb(52, 131, 235);
+        }
+        .dua {
+            color: red;
+        }
+        .tiga {
+            color: yellow;
+        }
+        .empat {
+            color: rgb(52, 131, 235);
+        }
+        .lima {
+            color: green;
+        }
+        .enam {
+            color: red;
+        }
+        h1 {
+            text-align: center;
+            color: whitesmoke;
+            font-family: 'Lobster', cursive;
+            text-decoration: underline;
+            text-decoration-color: yellow;
+            font-size: 50px;
+        }
+        .profile {
+            position: fixed;
+            width: 70px;
+            height: 70px;
+            border: 2px solid black;
+            border-radius: 35px;
+            background-color: rgb(142, 222, 253);
+            top: 20px;
+            right: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 60px;
+        }
+        .custom {
+            position: fixed;
+            width: 50px;
+            height: 50px;
+            border: 2px solid black;
+            border-radius: 25px;
+            background-color: white;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+        }
+        .mic {
+            width: 40px;
+            height: 40px;
+            border: 2px solid black;
+            border-radius: 20px;
+            background-color: lightgoldenrodyellow;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: 5px;
+            font-size: 30px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="google">
+        <p class="satu">G</p>
+        <p class="dua">u</p>
+        <p class="tiga">g</p>
+        <p class="empat">g</p>
+        <p class="lima">e</p>
+        <p class="enam">l</p>
+    </div>
+    <form id="form-task">
+        <input class="input" type="text" name="" id="entry-task" placeholder="Search anything ..." autocomplete="off">
+        <div class="mic">
+            <i class='bx bxs-microphone'></i>
+        </div>
+        <input class="submit" type="submit" name="" id="submit-task" value="Search">
+        
+    </form>
+    <h1>Search History : </h1>
+    <ul id="tasks"></ul>
+    <div class="profile">
+        <i class='bx bx-user-circle'></i>
+    </div>
+    <div class="custom">
+        <i class='bx bxs-pencil'></i>
+    </div>
+    
+</body>
+</html>

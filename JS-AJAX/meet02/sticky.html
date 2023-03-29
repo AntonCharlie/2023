@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>Sticky Position</title>
+    <style>
+        body { height: 2000px;}
+        
+        div {
+            height: 200px;
+            width: 200px;
+            border: black 1px solid;
+            margin: 0px auto;
+        }
+        .satu {
+            background-color: lightcoral;
+        }
+        .dua {
+            background-color: lightgoldenrodyellow;
+            position: sticky;
+            height: 50px;
+            width: 100%;
+            top: 0;
+            left: 0;
+        }
+        .tiga {
+            background-color: lightgreen;
+        }
+        .wrapper {
+            width: 800px;
+            height: 800px;
+            border: purple 10px solid;
+            position: relative;
+            top: 50px;
+        }
+        .circle {
+            position: fixed;
+            width: 70px;
+            height: 70px;
+            border: 2px solid black;
+            border-radius: 35px;
+            background-color: lightgreen;
+            bottom: 50px;
+            right: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 45px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="dua"></div>
+        </nav>
+        <div class="information"></div>
+    </header>
+    <div class="wrapper">
+        <div class="satu"></div>    
+        <div class="tiga"></div>
+    </div>   
+    <div class="circle">
+        <i class='bx bxl-whatsapp'></i>
+    </div>
+</body>
+</html>
